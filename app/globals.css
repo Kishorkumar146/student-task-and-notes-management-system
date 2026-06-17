@@ -1,0 +1,154 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-slate-50 text-slate-800 font-sans;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-slate-300 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-slate-400;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-4 py-2 rounded-lg
+           transition-all duration-150 text-sm shadow-sm hover:shadow-md
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-secondary {
+    @apply bg-white hover:bg-slate-50 text-slate-700 font-medium px-4 py-2 rounded-lg
+           border border-slate-200 transition-all duration-150 text-sm shadow-sm
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-ghost {
+    @apply bg-transparent hover:bg-slate-100 text-slate-600 font-medium px-3 py-2
+           rounded-lg transition-all duration-150 text-sm
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-danger {
+    @apply bg-red-50 hover:bg-red-100 text-red-600 font-medium px-4 py-2 rounded-lg
+           border border-red-200 transition-all duration-150 text-sm;
+  }
+
+  .input-base {
+    @apply w-full px-3 py-2 rounded-lg border border-slate-200 bg-white text-slate-800
+           text-sm placeholder:text-slate-400 focus:outline-none focus:ring-2
+           focus:ring-indigo-500/30 focus:border-indigo-400 transition-all duration-150;
+  }
+
+  .card {
+    @apply bg-white rounded-xl border border-slate-200 shadow-sm;
+  }
+
+  .card-hover {
+    @apply card hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 cursor-pointer;
+  }
+
+  .page-title {
+    @apply text-2xl font-semibold text-slate-900 tracking-tight;
+  }
+
+  .section-title {
+    @apply text-base font-semibold text-slate-700;
+  }
+
+  .label {
+    @apply text-sm font-medium text-slate-600 mb-1 block;
+  }
+
+  .badge {
+    @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-medium;
+  }
+}
+
+/* TipTap editor styles */
+.ProseMirror {
+  @apply outline-none min-h-[200px] text-slate-800 leading-relaxed;
+}
+
+.ProseMirror p {
+  @apply mb-3 text-sm;
+}
+
+.ProseMirror h1 {
+  @apply text-2xl font-bold mb-4 mt-6 text-slate-900;
+}
+
+.ProseMirror h2 {
+  @apply text-xl font-semibold mb-3 mt-5 text-slate-900;
+}
+
+.ProseMirror h3 {
+  @apply text-lg font-semibold mb-2 mt-4 text-slate-900;
+}
+
+.ProseMirror ul {
+  @apply list-disc pl-5 mb-3 space-y-1;
+}
+
+.ProseMirror ol {
+  @apply list-decimal pl-5 mb-3 space-y-1;
+}
+
+.ProseMirror li {
+  @apply text-sm text-slate-700;
+}
+
+.ProseMirror code {
+  @apply bg-slate-100 text-indigo-700 px-1.5 py-0.5 rounded text-xs font-mono;
+}
+
+.ProseMirror pre {
+  @apply bg-slate-900 text-slate-100 p-4 rounded-lg mb-3 overflow-x-auto;
+}
+
+.ProseMirror pre code {
+  @apply bg-transparent text-inherit p-0 text-xs;
+}
+
+.ProseMirror blockquote {
+  @apply border-l-4 border-indigo-300 pl-4 italic text-slate-600 mb-3;
+}
+
+.ProseMirror mark {
+  @apply bg-amber-100 text-amber-900 rounded px-0.5;
+}
+
+.ProseMirror a {
+  @apply text-indigo-600 underline underline-offset-2 hover:text-indigo-700;
+}
+
+.ProseMirror p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  @apply text-slate-400 pointer-events-none h-0 float-left;
+}
