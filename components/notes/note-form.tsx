@@ -65,8 +65,7 @@ export default function NoteForm({ subjects, defaultValues }: NoteFormProps) {
     }
   };
 
-  const handleAskAI = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleAskAI = async () => {
     if (!question.trim()) return;
     setAiLoading(true);
     setAiError("");
@@ -140,16 +139,23 @@ export default function NoteForm({ subjects, defaultValues }: NoteFormProps) {
       {/* Ask AI panel */}
       {aiOpen && (
         <div className="rounded-xl border border-indigo-100 bg-indigo-50/40 p-4 space-y-3">
-          <form onSubmit={handleAskAI} className="flex items-center gap-2">
+          <div className="flex items-center gap-2">
             <input
               type="text"
               className="flex-1 px-3 py-2 rounded-lg border border-slate-200 bg-white text-sm placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-400 transition-all"
               placeholder="Ask something about this note..."
               value={question}
               onChange={(e) => setQuestion(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  e.preventDefault();
+                  handleAskAI();
+                }
+              }}
             />
             <button
-              type="submit"
+              type="button"
+              onClick={handleAskAI}
               disabled={aiLoading || !question.trim()}
               className="flex items-center justify-center w-9 h-9 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white transition-all disabled:opacity-50 disabled:cursor-not-allowed shrink-0"
             >
@@ -159,7 +165,7 @@ export default function NoteForm({ subjects, defaultValues }: NoteFormProps) {
                 <Send size={14} />
               )}
             </button>
-          </form>
+          </div>
 
           {aiError && (
             <p className="text-sm text-red-600">{aiError}</p>
