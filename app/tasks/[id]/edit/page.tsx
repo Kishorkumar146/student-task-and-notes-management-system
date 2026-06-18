@@ -6,12 +6,14 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 interface Props {
-  params: { id: string }
+  params: Promise<{ id: string }>
 }
 
 export default async function EditTaskPage({ params }: Props) {
+  const { id } = await params
+
   const [task, subjects] = await Promise.all([
-    getTaskById(params.id).catch(() => null),
+    getTaskById(id).catch(() => null),
     getSubjects(),
   ])
 
