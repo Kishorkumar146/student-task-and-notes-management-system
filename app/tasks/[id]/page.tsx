@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 interface Props {
-  params: { id: string }
+  params: Promise<{ id: string }>
 }
 
 const priorityConfig = {
@@ -41,7 +41,8 @@ function isOverdue(dateStr: string) {
 }
 
 export default async function TaskDetailPage({ params }: Props) {
-  const task = await getTaskById(params.id).catch(() => null)
+  const { id } = await params
+  const task = await getTaskById(id).catch(() => null)
   if (!task) notFound()
 
   const priority = priorityConfig[task.priority as keyof typeof priorityConfig]
